@@ -1,6 +1,6 @@
 name: 'Remove artifacts'
 author: 'c-hive'
-description: ''
+description: 'Remove old artifacts, optionally keeping release (tagged) artifacts and a number of recent ones.'
 runs:
   using: 'node24'
   main: 'dist/index.js'
@@ -17,4 +17,13 @@ inputs:
     required: false
   skip-recent:
     description: 'Keep the specified number of artifacts even if they are older than the age.'
+    required: false
+  skip-recent-commits:
+    description: 'Keep all artifacts of the specified number of most recent commits, even if they are older than the age.'
+    required: false
+  max-retries:
+    description: 'How many times a request is retried when hitting a rate limit before the action fails. Default: 5.'
+    required: false
+  dry-run:
+    description: 'true/false. If enabled, logs which artifacts would be removed without deleting anything.'
     required: false

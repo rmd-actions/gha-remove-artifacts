@@ -8,13 +8,11 @@ Status and support
 - &#x2714; supported
 - &#x2716; no ongoing development
 
-[![CI](/../../workflows/CI/badge.svg?branch=master)](/../../actions)
-
-GitHub Action Artifacts are removed after [90 days](https://github.community/t5/GitHub-Actions/Managing-Actions-storage-space/m-p/41424/highlight/true#M4618) by default. [GitHub now supports changing this setting](https://github.blog/changelog/2020-10-08-github-actions-ability-to-change-retention-days-for-artifacts-and-logs/). This action allows you to further customize the cleanup. It
+GitHub Action Artifacts are removed after [90 days by default](https://docs.github.com/en/organizations/managing-organization-settings/configuring-the-retention-period-for-github-actions-artifacts-and-logs-in-your-organization), and the retention period is configurable. This action allows you to further customize the cleanup. It
 - removes artifacts that are older than the specified age
 - has the option to keep release (tagged) artifacts
-- has the option to keep a number of recent artifacts
-- [respects](https://github.com/octokit/plugin-throttling.js) GitHub's rate limit
+- has the option to keep a number of recent artifacts, or the artifacts of a number of recent commits
+- [respects](https://github.com/octokit/plugin-throttling.js) GitHub's rate limit, with a configurable retry cap
 
 Example use cases:
 - keep all release artifacts for a year, remove non-release artifacts after 30 days
@@ -50,11 +48,10 @@ jobs:
         # Optional inputs
         # skip-tags: true
         # skip-recent: 5
+        # skip-recent-commits: 3
+        # max-retries: 5
+        # dry-run: true
 ```
-
-## Conventions
-
-This project follows [C-Hive guides](https://github.com/c-hive/guides) for code style, way of working and other development concerns.
 
 ## License
 
